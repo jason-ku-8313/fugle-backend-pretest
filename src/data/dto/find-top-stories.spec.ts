@@ -2,7 +2,7 @@ import { validate, ValidationError } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 import { FindTopStoriesDto } from './find-top-stories.dto';
 
-describe.only('FindTopStoriesDto', () => {
+describe('FindTopStoriesDto', () => {
   it('should pass validation when user is a valid number', async () => {
     const dto = plainToClass(FindTopStoriesDto, { user: 123 });
 
