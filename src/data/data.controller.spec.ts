@@ -18,6 +18,10 @@ describe('DataController', () => {
             findTopStories: jest.fn(),
           },
         },
+        {
+          provide: 'REDIS_CLIENT',
+          useValue: {},
+        },
       ],
     }).compile();
 

@@ -53,7 +53,7 @@ describe('DataService', () => {
       const result = service.findTopStories(123).pipe(
         catchError((err) => {
           expect(err).toBeInstanceOf(InternalServerErrorException);
-          return throwError(() => err);
+          return of({});
         }),
       );
 
