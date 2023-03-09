@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { DataService } from './data.service';
 import { FindTopStoriesDto } from './dto/find-top-stories.dto';
 import { TopStories } from './interfaces/top-stories.interface';
-import { RateLimitingGuard } from '../guards/rate-limiting.guard';
+import { RateLimitingGuard } from '../common/guards/rate-limiting.guard';
 
 @Controller('data')
 @UseGuards(RateLimitingGuard)

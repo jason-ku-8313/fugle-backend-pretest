@@ -1,7 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ExecutionContext } from '@nestjs/common';
-import { RateLimitingGuard } from '../../src/guards/rate-limiting.guard';
+import { RateLimitingGuard } from './rate-limiting.guard';
 import { getClientIp } from 'request-ip';
+import { REDIS_CLIENT_NAME } from '../constants/redis.constants';
 
 jest.mock('request-ip');
 
@@ -13,7 +14,7 @@ describe('RateLimitingGuard', () => {
       providers: [
         RateLimitingGuard,
         {
-          provide: 'REDIS_CLIENT',
+          provide: REDIS_CLIENT_NAME,
           useValue: {
             multi: jest.fn().mockReturnThis(),
             incr: jest.fn().mockReturnThis(),
@@ -38,7 +39,7 @@ describe('RateLimitingGuard', () => {
       headers: {},
     };
     jest.useFakeTimers().setSystemTime(new Date().setMinutes(0));
-    const mockContext: ExecutionContext = {
+    const mockContext = {
       switchToHttp: () => ({
         getRequest: () => mockRequest,
       }),
@@ -52,10 +53,10 @@ describe('RateLimitingGuard', () => {
       .mockResolvedValueOnce([1, true])
       .mockResolvedValueOnce([1, true]);
 
-    // // Act
+    // Act
     const canActivateResult = await guard.canActivate(mockContext);
 
-    // // Assert
+    // Assert
     expect(canActivateResult).toBeTruthy();
     expect(mockRedisMulti.incr).toHaveBeenCalledTimes(2);
     expect(mockRedisMulti.incr).toHaveBeenCalledWith('127.0.0.1-0');
