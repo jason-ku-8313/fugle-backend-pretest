@@ -4,6 +4,16 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Tech Stack
+
+[Nest.js](https://github.com/nestjs/nest), [TypeScript](https://www.typescriptlang.org/), [WebSocket](https://www.npmjs.com/package/ws), [Redis](https://redis.io/) and [Deciaml.js](https://github.com/MikeMcl/decimal.js#readme)
+
+## Requirements
+
+- [X] Part 1: HTTP API
+- [X] Part 2: Rate Limiting
+- [X] Part 3: WebSocket API
+
 ## Installation
 
 ```bash
