@@ -5,10 +5,10 @@ export class LiveTickerDto {
   amount: Decimal;
   amount_str: string;
   price: Decimal;
-  price_strrepresented: string;
+  price_str: string;
   type: number;
   timestamp: string;
   microtimestamp: string;
-  buy_order_id: bigint;
-  sell_order_id: bigint;
+  buy_order_id: number;
+  sell_order_id: number;
 }

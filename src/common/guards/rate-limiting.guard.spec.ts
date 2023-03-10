@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ExecutionContext } from '@nestjs/common';
 import { RateLimitingGuard } from './rate-limiting.guard';
 import { getClientIp } from 'request-ip';
-import { REDIS_CLIENT_NAME } from '../constants/redis.constants';
+import { REDIS_CLIENT } from '../constants/redis.constants';
 
 jest.mock('request-ip');
 
@@ -14,7 +14,7 @@ describe('RateLimitingGuard', () => {
       providers: [
         RateLimitingGuard,
         {
-          provide: REDIS_CLIENT_NAME,
+          provide: REDIS_CLIENT,
           useValue: {
             multi: jest.fn().mockReturnThis(),
             incr: jest.fn().mockReturnThis(),

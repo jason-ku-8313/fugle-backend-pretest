@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { of } from 'rxjs';
-import { REDIS_CLIENT_NAME } from '../common/constants/redis.constants';
+import { REDIS_CLIENT } from '../common/constants/redis.constants';
 import { DataController } from './data.controller';
 import { DataService } from './data.service';
 import { TopStories } from './interfaces/top-stories.interface';
@@ -20,7 +20,7 @@ describe('DataController', () => {
           },
         },
         {
-          provide: REDIS_CLIENT_NAME,
+          provide: REDIS_CLIENT,
           useValue: {},
         },
       ],

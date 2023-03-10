@@ -8,7 +8,7 @@ import type { Request } from 'express';
 import { getClientIp } from 'request-ip';
 import { RedisClientType } from '@redis/client';
 import { ForbiddenException } from '@nestjs/common/exceptions';
-import { REDIS_CLIENT_NAME } from '../constants/redis.constants';
+import { REDIS_CLIENT } from '../constants/redis.constants';
 
 const IP_MAX_REQUEST_NUM = 10;
 const USER_MAX_REQUEST_NUM = 5;
@@ -21,9 +21,7 @@ const EXPIRATION_SEC = 60;
  */
 @Injectable()
 export class RateLimitingGuard implements CanActivate {
-  constructor(
-    @Inject(REDIS_CLIENT_NAME) private readonly redis: RedisClientType,
-  ) {}
+  constructor(@Inject(REDIS_CLIENT) private readonly redis: RedisClientType) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
